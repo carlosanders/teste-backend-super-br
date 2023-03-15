@@ -1,6 +1,8 @@
 parameters:
     rules:
         messages:
+            anotacao:
+                '0001': 'Erro ao criar Anotacao!'
             aviso:
                 '0001': 'O usuário não possui poderes para alterar ou excluir o Aviso!'
             notificacao:
