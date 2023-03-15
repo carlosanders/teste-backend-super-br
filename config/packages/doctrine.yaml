@@ -1,0 +1,51 @@
+doctrine:
+    dbal:
+        default_connection: default
+        url: '%env(DATABASE_URL)%'
+        charset: UTF8
+        logging: true
+        mapping_types:
+            enum: string
+    orm:
+        dql:
+            numeric_functions:
+                round: SuppCore\AdministrativoBackend\DQL\Round
+                money: SuppCore\AdministrativoBackend\DQL\Money
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        metadata_cache_driver:
+            type: pool
+            pool: doctrine.system_cache_pool
+        query_cache_driver:
+            type: pool
+            pool: doctrine.system_cache_pool
+        result_cache_driver:
+            type: pool
+            pool: doctrine.result_cache_pool
+        filters:
+            softdeleteable:
+                class: 'Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter'
+                enabled: true
+            pcu:
+                class: 'SuppCore\AdministrativoBackend\Doctrine\ORM\Pcu\PcuFilter'
+                enabled: false
+        mappings:
+            supp_core.administrativo_backend:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: SuppCore\AdministrativoBackend\Entity\
+                alias: SuppCoreAdministrativoBackend
+            gedmo_loggable:
+                type: annotation
+                prefix: Gedmo\Loggable\Entity
+                dir: '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity'
+                alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            gedmo_tree:
+                type: annotation
+                prefix: Gedmo\Tree\Entity
+                dir: '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Tree/Entity'
+                alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                is_bundle: false

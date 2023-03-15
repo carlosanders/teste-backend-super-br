@@ -1,0 +1,164 @@
+body {
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    counter-reset: H1 numerado;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 210mm;
+    line-height: 1.8em;
+}
+
+p {
+    text-indent: 25mm;
+    text-align: justify;
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    line-height: 1.8em;
+}
+
+h1:before {
+    content: counter(H1) ". ";
+    counter-increment: H1;
+    display: inline-block;
+    width: 25mm;
+}
+
+h1 {
+    counter-reset: H2;
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    text-align: justify;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    line-height: 1.8em;
+}
+
+h2:before {
+    content: counter(H1) "." counter(H2) " ";
+    counter-increment: H2;
+    display: inline-block;
+    width: 25mm;
+}
+
+h2 {
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    text-align: justify;
+    font-weight: bold;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    line-height: 1.8em;
+}
+
+p.numerado:before {
+    content: counter(numerado) ". ";
+    counter-increment: numerado;
+    display: inline-block;
+    width: 25mm;
+    font-weight: normal;
+}
+
+p.numerado {
+    text-indent: 0;
+    text-align: justify;
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    line-height: 1.8em;
+    font-weight: normal;
+}
+
+img {
+    max-width: 160mm;
+}
+
+table {
+    border-width: 1px;
+    border-spacing: 2px;
+    border-color: black;
+    border-collapse: collapse;
+    font-size: 14pt;
+    max-width: 160mm;
+    word-break: break-word;
+}
+
+table th {
+    border-width: 1px;
+    padding: 2px;
+    border-color: black;
+    font-size: 14pt;
+}
+
+table td {
+    border-width: 1px;
+    padding: 2px;
+    border-color: black;
+    font-size: 14pt;
+}
+
+table td p {
+    text-align: justify;
+    text-indent: 0;
+}
+
+ul {
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    text-align: justify;
+    list-style-type: circle;
+    margin-left: 18mm;
+}
+
+ol {
+    font-family: "Times New Roman, Times, serif";
+    font-size: 14pt;
+    text-align: justify;
+    margin-left: 18mm;
+}
+
+blockquote {
+    font-family: "Times New Roman, Times, serif";
+    font-size: 12pt;
+    text-align: justify;
+    padding-left: 40mm;
+    padding-right: 0;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    line-height: 1.2em;
+    margin-right: 0;
+}
+
+.centralizado {
+    text-align: center;
+    text-indent: 0;
+}
+
+.direita {
+    text-align: right;
+    text-indent: 0;
+}
+
+.esquerda {
+    text-align: left;
+    text-indent: 0;
+}
+
+p span.cke_widget_inline {
+    text-indent: 0 !important;
+}
+
+section ol {
+    font-family: "Times New Roman, Times, serif";
+    margin-left: 2mm !important;
+}
+
+section.footnotes {
+    margin-top: 4.2mm;
+    padding-top: 2.2mm;
+}

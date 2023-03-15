@@ -1,0 +1,6 @@
+mercure:
+    hubs:
+        default:
+            url: '%env(MERCURE_PUBLISH_URL)%'
+            jwt:
+                provider: SuppCore\AdministrativoBackend\Utils\MercureJWTProvider

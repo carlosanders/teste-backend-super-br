@@ -1,0 +1,21 @@
+monolog:
+    channels:
+        - 'statistics'
+        - 'frontend'
+        - 'eventos_preservacao'
+        - 'cronjob'
+    handlers:
+        stats:
+            type: service
+            id: snc_redis.monolog.handler
+            level: info
+            channels: [ 'statistics', 'eventos_preservacao', 'cronjob' ]
+        main:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+        redis:
+            type: service
+            id: snc_redis.monolog.handler
+            level: error
+            channels: [ '!statistics', '!eventos_preservacao', '!cronjob' ]

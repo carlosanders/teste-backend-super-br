@@ -1,0 +1,7 @@
+localhost:8000 {
+    root * /app/public
+    push
+    php_fastcgi unix//var/run/php/php8.1-fpm.sock
+    encode zstd gzip
+    file_server
+}

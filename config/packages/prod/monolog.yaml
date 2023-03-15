@@ -1,0 +1,19 @@
+monolog:
+    channels:
+        - 'statistics'
+        - 'frontend'
+        - 'eventos_preservacao'
+        - 'cronjob'
+    handlers:
+        main:
+            type: filter
+            min_level: error
+            handler: redis
+        stats:
+            type: filter
+            min_level: info
+            handler: redis
+            channels: [ 'statistics', 'doctrine', 'eventos_preservacao', 'cronjob' ]
+        redis:
+            type: service
+            id: snc_redis.monolog.handler
