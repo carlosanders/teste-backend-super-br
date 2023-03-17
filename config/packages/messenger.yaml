@@ -60,6 +60,12 @@ framework:
                     persistent: true
                 retry_strategy:
                     max_retries: 0
+            indexacao_anotacao:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%indexacao_anotacao'
+                options:
+                    persistent: true
+                retry_strategy:
+                    max_retries: 0
             populate_modelo:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%populate_modelo'
                 options:
@@ -215,6 +221,7 @@ framework:
             # async is whatever name you gave your transport above
             'SuppCore\AdministrativoBackend\Api\V1\Triggers\Juntada\Message\IndexacaoMessage':  'indexacao_componente_digital'
             'SuppCore\AdministrativoBackend\Api\V1\Triggers\Pessoa\Message\IndexacaoMessage':  'indexacao_pessoa'
+            'SuppCore\AdministrativoBackend\Api\V1\Triggers\Anotacao\Message\IndexacaoMessage':  'indexacao_anotacao'
             'SuppCore\AdministrativoBackend\Api\V1\Triggers\Modelo\Message\IndexacaoMessage':  'indexacao_modelo'
             'SuppCore\AdministrativoBackend\Elastic\Message\DenseVectorMessage':  'dense_vector'
             'SuppCore\AdministrativoBackend\Elastic\Message\DenseVectorQueryMessage':  'dense_vector_query'

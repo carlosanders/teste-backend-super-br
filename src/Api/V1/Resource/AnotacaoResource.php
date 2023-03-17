@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @method Repository  getRepository(): Repository
+ * 
  * @method Entity[]    find(array $criteria = null, array $orderBy = null, int $limit = null, int $offset = null, array $search = null, array $populate = null): array
  * @method Entity|null findOne(int $id, bool $throwExceptionIfNotFound = null): ?EntityInterface
  * @method Entity|null findOneBy(array $criteria, array $orderBy = null, bool $throwExceptionIfNotFound = null): ?EntityInterface

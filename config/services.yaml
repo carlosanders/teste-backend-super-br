@@ -762,6 +762,11 @@ parameters:
                                 properties:
                                     id: { type: keyword }
                                     nome: { type: text }
+            anotacao:
+                properties:
+                    id: { type: keyword }
+                    ativo: { type: boolean }
+                    descricao: { type: text }
 
     default_ocr_enabled: !php/const SuppCore\AdministrativoBackend\Elastic\ComponenteDigitalDocumentService::DEFAULT_OCR_ENABLED
     default_ocr_pipeline_timeout: !php/const SuppCore\AdministrativoBackend\Elastic\ComponenteDigitalDocumentService::DEFAULT_OCR_PIPELINE_TIMEOUT
@@ -863,6 +868,11 @@ services:
         class: SuppCore\AdministrativoBackend\Api\V1\Controller\PessoaController
         arguments: [ '@SuppCore\AdministrativoBackend\Api\V1\Resource\PessoaResource', '@SuppCore\AdministrativoBackend\Rest\ResponseHandler', '@SuppCore\AdministrativoBackend\Document\Pessoa', '@SuppCore\AdministrativoBackend\Elastic\ElasticQueryBuilderService' ]
         tags: [ 'controller.service_arguments' ]
+
+    SuppCore\AdministrativoBackend\Api\V1\Controller\AnotacaoController:
+        class: SuppCore\AdministrativoBackend\Api\V1\Controller\AnotacaoController
+        arguments: [ '@SuppCore\AdministrativoBackend\Api\V1\Resource\AnotacaoResource', '@SuppCore\AdministrativoBackend\Rest\ResponseHandler', '@SuppCore\AdministrativoBackend\Document\Anotacao', '@SuppCore\AdministrativoBackend\Elastic\ElasticQueryBuilderService' ]
+        tags: [ 'controller.service_arguments' ]    
 
     SuppCore\AdministrativoBackend\Api\V1\Controller\ModeloController:
         class: SuppCore\AdministrativoBackend\Api\V1\Controller\ModeloController
@@ -1094,6 +1104,11 @@ services:
 
     SuppCore\AdministrativoBackend\Api\V1\Triggers\Pessoa\MessageHandler\IndexacaoMessageHandler:
         arguments: [ '@SuppCore\AdministrativoBackend\Document\Pessoa', '@SuppCore\AdministrativoBackend\Api\V1\Resource\PessoaResource' ]
+        tags: [ messenger.message_handler ]
+        lazy: true
+    
+    SuppCore\AdministrativoBackend\Api\V1\Triggers\Anotacao\MessageHandler\IndexacaoMessageHandler:
+        arguments: [ '@SuppCore\AdministrativoBackend\Document\Anotacao', '@SuppCore\AdministrativoBackend\Api\V1\Resource\AnotacaoResource' ]
         tags: [ messenger.message_handler ]
         lazy: true
 

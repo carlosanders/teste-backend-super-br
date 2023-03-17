@@ -80,7 +80,7 @@ chmod 644 /app/config/jwt/private.pem
 
 phpdismod newrelic
 
-service supervisor start
+# service supervisor start
 
 # Step 10
 php -v

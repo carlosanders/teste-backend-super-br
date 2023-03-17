@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * /src/Api/V1/Triggers/Anotacao/Trigger0001.php.
+ * /src/Api/V1/Triggers/Anotacao/Trigger0002.php.
  *
  * @author Advocacia-Geral da União <supp@agu.gov.br>
  */
@@ -11,17 +11,16 @@ namespace SuppCore\AdministrativoBackend\Api\V1\Triggers\Anotacao;
 
 use Exception;
 use SuppCore\AdministrativoBackend\Api\V1\DTO\Anotacao;
-use SuppCore\AdministrativoBackend\Api\V1\DTO\GeneroProcesso;
-use SuppCore\AdministrativoBackend\Api\V1\Resource\AnotacaoResource;
-use SuppCore\AdministrativoBackend\Api\V1\Resource\GeneroProcessoResource;
 use SuppCore\AdministrativoBackend\DTO\RestDtoInterface;
 use SuppCore\AdministrativoBackend\Entity\EntityInterface;
 use SuppCore\AdministrativoBackend\Triggers\TriggerInterface;
+use SuppCore\AdministrativoBackend\Transaction\TransactionManager;
+use SuppCore\AdministrativoBackend\Api\V1\Triggers\Anotacao\Message\IndexacaoMessage;
 
 /**
  * Class Trigger0001.
  *
- * @descSwagger=Se não houver assunto outro principal, o assunto será criado/editado como principal!
+ * @descSwagger=Entrando na Trigger 0001
  * @classeSwagger=Trigger0001
  *
  * @author Advocacia-Geral da União <supp@agu.gov.br>
@@ -29,11 +28,16 @@ use SuppCore\AdministrativoBackend\Triggers\TriggerInterface;
 class Trigger0001 implements TriggerInterface
 {
 
-    function __construct(
-        private GeneroProcessoResource $generoProcessoResource
+    private TransactionManager $transactionManager;
+
+    /**
+     * Trigger0010 constructor.
+     */
+    public function __construct(
+        TransactionManager $transactionManager
     )
     {
-
+        $this->transactionManager = $transactionManager;
     }
 
     /**
@@ -45,12 +49,8 @@ class Trigger0001 implements TriggerInterface
         string $transactionId
     ): void
     {
-        $generoProcesso = new GeneroProcesso();
-        $generoProcesso->setNome('Genero Anotação');
-        $generoProcesso->setDescricao('Genero Anotação');
-        $generoProcesso->setAtivo(true);
 
-        $this->generoProcessoResource->create($generoProcesso, $transactionId);
+        $this->transactionManager->addAsyncDispatch(new IndexacaoMessage($entity->getUuid()), $transactionId);
 
     }
 
@@ -61,8 +61,10 @@ class Trigger0001 implements TriggerInterface
     {
         return [
             Anotacao::class => [
-                'afterCreate'
-            ]
+                'afterCreate',
+                'afterUpdate',
+                'afterPatch',
+            ],
         ];
     }
 

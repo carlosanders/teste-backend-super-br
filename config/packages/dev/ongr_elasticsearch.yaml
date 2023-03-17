@@ -63,3 +63,12 @@ ongr_elasticsearch:
             number_of_replicas: 0
             number_of_shards: 2
         type: processo # for 5.x ES compatibility
+    SuppCore\AdministrativoBackend\Document\Anotacao:
+        alias: anotacao
+        default: false
+        hosts:
+            - '%env(ELASTIC_URL)%'
+        settings:
+            number_of_replicas: 0
+            number_of_shards: 2
+        type: anotacao # for 5.x ES compatibility
